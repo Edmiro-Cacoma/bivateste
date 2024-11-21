@@ -13,24 +13,30 @@ import { FormSucess } from "../form-sucess";
 import { login } from "@/actions/login";
 import { useState, useTransition } from "react";
 const LoginForm = () => {
+
     const [isPending, startTransition] = useTransition();
     const [error, setError] = useState<string | undefined>("");
     const [success, setSuccess] = useState<string | undefined>("");
 
-    const form = useForm<z.infer<typeof LoginSchema>>({ resolver: zodResolver(LoginSchema), defaultValues: { email: "", password: "" } })
+    const form = useForm<z.infer<typeof LoginSchema>>({
+        resolver: zodResolver(LoginSchema),
+        defaultValues: { email: "", password: "" }
+    })
 
     const onSubmit = (values: z.infer<typeof LoginSchema>) => {
+
         setError("");
         setSuccess("");
+
         startTransition(() => {
             login(values)
                 .then((data) => {
                     if (data) {
                         setError(data.error);
-                        setSuccess(data.success);
+                   
                     }
+                  
                 })
-              
         })
     }
     return (
