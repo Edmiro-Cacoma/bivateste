@@ -7,10 +7,9 @@ import { ReactNode } from "react";
 interface LoginButtonProps {
     children: ReactNode;
     mode?: "modal" | "redirect",
-    asChild?: boolean;
 }
 
-export const LoginButton = ({ children, mode = "redirect", asChild }: LoginButtonProps) => {
+export const LoginButton = ({ children, mode = "redirect" }: LoginButtonProps) => {
     const router = useRouter();
 
     const btnClick = () => {
@@ -22,7 +21,7 @@ export const LoginButton = ({ children, mode = "redirect", asChild }: LoginButto
         return (<span>Todo: Implement Modal</span>)
     }
     return (
-        <span onClick={btnClick} className="cursor-pointer">
+        <span onClick={btnClick} className="cursor-pointer" >
            { children}
         </span>
     )
